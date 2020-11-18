@@ -3,3 +3,6 @@
 ################################################################################
 
 /dotnet5example/.vs/dotnet5example/DesignTimeBuild
+/dotnet5example/Client/obj
+/dotnet5example/Server/obj
+/dotnet5example/Shared/obj
