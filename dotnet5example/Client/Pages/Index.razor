@@ -1,7 +1,93 @@
 ﻿@page "/"
+@using dotnet5example.Shared
+@inject HttpClient Http
 
-<h1>Hello, world!</h1>
+<h1>Number Sentence Generator</h1>
 
-Welcome to your new app.
+@if (response == null)
+{
+    <p>
+        Please follow the instructions below.
+    </p>
+    <div class="form-group">
+        <label for="nameInput">Name</label>
+        <input type="text" class="form-control" id="nameInput" aria-describedby="nameHelp" @bind="name">
+        @if (errors.ContainsKey("name"))
+        {
+            <small id="nameHelp" class="form-text text-muted alert-danger">@errors["name"]</small>
+        }
+        else
+        {
+            <small id="nameHelp" class="form-text text-muted">Please give us your full name.</small>
+        }
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+    </div>
+    <div class="form-group">
+        <label for="numberInput">Number</label>
+        <input type="number" class="form-control" id="numberInput" aria-describedby="numberHelp" @bind="number">
+        @if (errors.ContainsKey("number"))
+        {
+            <small id="numberHelp" class="form-text text-muted alert-danger">@errors["number"]</small>
+        }
+        else
+        {
+            <small id="numberHelp" class="form-text text-muted">Please insert a number here. It will be converted into a written sentence.</small>
+        }
+    </div>
+    <button class="btn btn-primary" @onclick="Execute">Execute</button>
+}
+else
+{
+    <p>
+        Here are the results:
+    </p>
+    <div class="form-group">
+        <label for="nameInput">Name</label>
+        <input type="text" class="form-control" id="nameInput" aria-describedby="nameHelp" disabled @bind-value="response.Name">
+    </div>
+    <div class="form-group">
+        <label for="numberInput">Original Number</label>
+        <input type="text" class="form-control" id="numberInput" aria-describedby="numberHelp" disabled value="@FormattedNumber()">
+    </div>
+        <p>Number Sentence: @response.NumberSentence</p>
+    <button class="btn btn-primary" @onclick="Reset">Reset</button>
+}
+
+@code {
+    private NumberSentenceResponse response;
+
+    private string name = "";
+    private decimal number = 0;
+    private Dictionary<string, string> errors = new();
+
+    private string FormattedNumber()
+    {
+        return number.ToString("N2");
+    }
+    protected async Task Execute(MouseEventArgs e)
+    {
+        if (!Validate())
+            return;
+
+        response = await Http.GetFromJsonAsync<NumberSentenceResponse>($"NumberSentence/{number}?name={name}");
+    }
+
+    protected bool Validate()
+    {
+        errors.Clear();
+        if (string.IsNullOrWhiteSpace(name))
+            errors.Add("name", "Name is mandatory.");
+
+        if (number == 0)
+            errors.Add("number", "Number must be different than zero.");
+        if (number < 0)
+            errors.Add("number", "Number should be positive.");
+
+        return !errors.Any();
+    }
+    protected void Reset()
+    {
+        response = null;
+        number = 0;
+    }
+}

@@ -6,3 +6,13 @@
 /dotnet5example/Client/obj
 /dotnet5example/Server/obj
 /dotnet5example/Shared/obj
+/.vs/dotnet5example/DesignTimeBuild
+/.vs/dotnet5example/config
+/.vs/dotnet5example/v16/TestStore/0
+/dotnet5example/Client/bin/Debug/net5.0
+/dotnet5example/Server/bin/Debug/net5.0
+/dotnet5example/Shared/bin/Debug/net5.0
+/dotnet5example.Service/bin/Debug/netcoreapp3.1
+/dotnet5example.Service/obj
+/dotnet5example.UnitTests/bin/Debug/netcoreapp3.1
+/dotnet5example.UnitTests/obj

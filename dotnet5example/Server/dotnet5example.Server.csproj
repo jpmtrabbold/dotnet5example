@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\dotnet5example.Service\dotnet5example.Service.csproj" />
     <ProjectReference Include="..\Client\dotnet5example.Client.csproj" />
     <ProjectReference Include="..\Shared\dotnet5example.Shared.csproj" />
   </ItemGroup>

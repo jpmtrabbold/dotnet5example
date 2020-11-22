@@ -1,0 +1,30 @@
+﻿using dotnet5example.Service;
+using Xunit;
+
+namespace dotnet5example.UnitTests
+{
+    public class NumberSentenceServiceTests
+    {
+        private readonly NumberSentenceService service = new NumberSentenceService();
+
+        [Theory]
+        [InlineData(0.01, "ZERO DOLLARS AND ONE CENT")]
+        [InlineData(0.10, "ZERO DOLLARS AND TEN CENTS")]
+        [InlineData(0.45, "ZERO DOLLARS AND FORTY-FIVE CENTS")]
+        [InlineData(1.00, "ONE DOLLAR")]
+        [InlineData(100.00, "ONE HUNDRED DOLLARS")]
+        [InlineData(2_384_572_395.00, "TWO BILLIONS, THREE HUNDREDS AND EIGHTY-FOUR MILLIONS, FIVE HUNDREDS AND SEVENTY-TWO THOUSANDS AND THREE HUNDREDS AND NINETY-FIVE DOLLARS")]
+        [InlineData(23.33, "TWENTY-THREE DOLLARS AND THIRTY-THREE CENTS")]
+        [InlineData(21_342_356.32, "TWENTY-ONE MILLIONS, THREE HUNDREDS AND FORTY-TWO THOUSANDS AND THREE HUNDREDS AND FIFTY-SIX DOLLARS AND THIRTY-TWO CENTS")]
+        [InlineData(1_000_000_001.00, "ONE BILLION AND ONE DOLLARS")]
+        [InlineData(1_000_000_001.50, "ONE BILLION AND ONE DOLLARS AND FIFTY CENTS")]
+        [InlineData(1_000_234_300_023.32, "ONE TRILLION, TWO HUNDREDS AND THIRTY-FOUR MILLIONS, THREE HUNDREDS THOUSANDS AND TWENTY-THREE DOLLARS AND THIRTY-TWO CENTS")]
+        [InlineData(123.45, "ONE HUNDRED AND TWENTY-THREE DOLLARS AND FORTY-FIVE CENTS")]
+        [InlineData(123_123_123_123_123_000_000_000_000.00, "ONE HUNDRED AND TWENTY-THREE ARE_YOU_SERIOUSILLIONS, ONE HUNDRED AND TWENTY-THREE SEXTILLIONS, ONE HUNDRED AND TWENTY-THREE QUINTILLIONS, ONE HUNDRED AND TWENTY-THREE QUADRILLIONS, ONE HUNDRED AND TWENTY-THREE TRILLIONS DOLLARS")]
+        public void PassingTest(decimal number, string sentence)
+        {
+            Assert.Equal(sentence, service.GenerateNumberSentence(number));
+        }
+
+    }
+}

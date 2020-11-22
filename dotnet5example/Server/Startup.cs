@@ -1,3 +1,4 @@
+using dotnet5example.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -25,6 +26,7 @@ namespace dotnet5example.Server
 
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddScoped<NumberSentenceService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
