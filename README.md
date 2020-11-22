@@ -1,6 +1,6 @@
 # Monetary amount name generator
 
-## Details of applications, frameworks etc. required to run your solution:
+## Details of applications, frameworks etc. required to run the solution
 
 ### Requirements:
 - [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/)
@@ -11,7 +11,7 @@
 - .NET 5 api
 - .NET 5 client (Blazor)
 
-## Detailed instructions on how to install, configure and execute your solution:
+## Detailed instructions on how to install, configure and execute the solution
 - download and install the requirements (links above);
 - open the solution on visual studio;
 - to run the tests, build the solution (so the tests will appear), then run the unit tests;
