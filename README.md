@@ -1,4 +1,4 @@
-# Monetary amount name generator
+# Monetary amount description generator
 
 ## Details of applications, frameworks etc. required to run the solution
 
