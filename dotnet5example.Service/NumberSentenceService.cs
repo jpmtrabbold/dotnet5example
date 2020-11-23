@@ -36,8 +36,7 @@ namespace dotnet5example.Service
                     var prev = (string.IsNullOrWhiteSpace(sentence) ? "" : (i + 1 == thousandGroups.Count) ? " AND " : ", ");
                     var thousandsIndex = thousandGroups.Count - 2 - i;
                     var thousandsSentence = thousandsIndex >= 0 ? " "+thousands[thousandsIndex] : "";
-                    var plural = (group != "001" && !string.IsNullOrWhiteSpace(thousandsSentence) ? "S" : "");
-                    sentence += $"{prev}{sub}{thousandsSentence}{plural}";
+                    sentence += $"{prev}{sub}{thousandsSentence}";
                 }
             }
 
@@ -76,7 +75,7 @@ namespace dotnet5example.Service
             {
                 hasHundred = true;
                 var hundredIndex = int.Parse(hundred.ToString()) - 1;
-                sentence += $"{digits[hundredIndex]} HUNDRED{(hundred != '1' ? "S" : "")}";
+                sentence += $"{digits[hundredIndex]} HUNDRED";
             }
 
             if (hasTen)
