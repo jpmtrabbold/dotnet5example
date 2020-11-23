@@ -73,7 +73,6 @@ namespace dotnet5example.Service
 
             if (hasHundred)
             {
-                hasHundred = true;
                 var hundredIndex = int.Parse(hundred.ToString()) - 1;
                 sentence += $"{digits[hundredIndex]} HUNDRED";
             }
